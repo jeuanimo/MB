@@ -1,0 +1,38 @@
+# Django Project Requirements
+Django==5.2.8
+
+# Optional but recommended packages for development
+# Uncomment the ones you want to use:
+
+# Database
+# psycopg2-binary==2.9.7  # PostgreSQL adapter
+# PyMySQL==1.1.0          # MySQL adapter
+
+# Development and debugging
+# django-debug-toolbar==4.2.0
+# django-extensions==3.2.3
+
+# Environment management
+# python-decouple==3.8
+
+# Image processing
+# Pillow==10.0.0
+
+# API development
+# djangorestframework==3.14.0
+# djangorestframework-simplejwt==5.3.0
+
+# Security
+# django-cors-headers==4.3.0
+
+# Forms
+# django-crispy-forms==2.0
+# crispy-bootstrap5==0.7
+
+# Testing
+# coverage==7.3.0
+# factory-boy==3.3.0
+
+# Production
+# gunicorn==21.2.0
+# whitenoise==6.5.0
