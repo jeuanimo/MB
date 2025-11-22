@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'board',  # Our message board app
+    'post',   # Our post app
+    'pages',  # Our pages app
 ]
 
 MIDDLEWARE = [
