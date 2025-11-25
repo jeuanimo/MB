@@ -1,8 +1,17 @@
-p<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Dark Mode Initialization (before any rendering) -->
+    <script>
+      // Apply saved theme before page renders to prevent flash
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-bs-theme', 'dark');
+      }
+    </script>
 
     <!-- ==========  TITLE SECTION  ========== -->
     <title>{% block title %}My Django Project{% endblock %}</title>
@@ -75,7 +84,7 @@ p<!DOCTYPE html>
     ></script>
 
     <!-- ==========  CUSTOM JS SECTION  ========== -->
-    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/main.js' %}?v=4"></script>
     {% block extra_js %}{% endblock %}
   </body>
 </html>

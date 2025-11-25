@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import Post
-from django.views.generic import(
+from django.contrib.auth.models import User
+
+from django.views.generic import (
     ListView, 
     DetailView,
     CreateView,
@@ -34,27 +36,27 @@ class PostDetailView(DetailView):
     template_name = 'post/detail.html'
     context_object_name = 'single_post'
 
-class PostCreateView(LoginRequiredMixin, CreateView):#Post requests
+class PostCreateView( CreateView):#Post requests
     """
     View to create a new post
     """
     model = Post
     template_name = 'post/new.html'
     
-    fields = ['title', 'subtitle', 'body']
+    fields = ['title', 'subtitle', 'body', 'image']
     
     def form_valid(self, form):
         # Set the author to the current user
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class PostUpdateView(UpdateView):
     """
     View to update an existing post
     """
     model = Post
-    template_name = 'post/update.html'
-    fields = ['title', 'subtitle', 'body']
+    template_name = 'post/edit.html'
+    fields = ['title', 'subtitle', 'body', 'image']
     
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -65,7 +67,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         post = self.get_object()
         return self.request.user == post.author
 
-class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class PostDeleteView(DeleteView):
     """
     View to delete a post
     """

@@ -1,11 +1,78 @@
 // Main JavaScript file for Django Project
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Initialize all components when DOM is ready
+  console.log("DOM Content Loaded - Initializing...");
+  
+  // Initialize dark mode FIRST
+  initializeDarkMode();
+  
+  // Initialize all other components
   initializeComponents();
   setupEventListeners();
   animateElements();
 });
+
+// Dark Mode Toggle Functionality
+function initializeDarkMode() {
+  console.log("Initializing dark mode...");
+  
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  const darkModeIcon = document.getElementById('darkModeIcon');
+  
+  console.log("Toggle element:", darkModeToggle);
+  console.log("Icon element:", darkModeIcon);
+  
+  if (!darkModeToggle || !darkModeIcon) {
+    console.error('Dark mode elements not found!');
+    return;
+  }
+  
+  // Get current theme from localStorage or default to light
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  const htmlElement = document.documentElement;
+  
+  console.log("Current theme from localStorage:", currentTheme);
+  
+  // Set initial state
+  if (currentTheme === 'dark') {
+    htmlElement.setAttribute('data-bs-theme', 'dark');
+    darkModeIcon.classList.remove('bi-moon-fill');
+    darkModeIcon.classList.add('bi-sun-fill');
+  } else {
+    htmlElement.setAttribute('data-bs-theme', 'light');
+    darkModeIcon.classList.remove('bi-sun-fill');
+    darkModeIcon.classList.add('bi-moon-fill');
+  }
+  
+  console.log("Initial theme set to:", htmlElement.getAttribute('data-bs-theme'));
+  
+  // Toggle dark mode on button click
+  darkModeToggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    console.log("Dark mode toggle clicked!");
+    
+    const currentTheme = htmlElement.getAttribute('data-bs-theme');
+    console.log("Current theme before toggle:", currentTheme);
+    
+    if (currentTheme === 'dark') {
+      // Switch to light mode
+      htmlElement.setAttribute('data-bs-theme', 'light');
+      darkModeIcon.classList.remove('bi-sun-fill');
+      darkModeIcon.classList.add('bi-moon-fill');
+      localStorage.setItem('theme', 'light');
+      console.log("Switched to light mode");
+    } else {
+      // Switch to dark mode
+      htmlElement.setAttribute('data-bs-theme', 'dark');
+      darkModeIcon.classList.remove('bi-moon-fill');
+      darkModeIcon.classList.add('bi-sun-fill');
+      localStorage.setItem('theme', 'dark');
+      console.log("Switched to dark mode");
+    }
+  });
+  
+  console.log("Dark mode initialized successfully!");
+}
 
 // Initialize various components
 function initializeComponents() {

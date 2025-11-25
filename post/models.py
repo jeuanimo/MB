@@ -13,7 +13,8 @@ class Post(models.Model):
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-
+    image = models.ImageField(upload_to='post_images/', blank=True, null=True)
+    
     def __str__(self):
         return f"{self.title}, by {self.author}"
 

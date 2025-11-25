@@ -26,13 +26,6 @@ urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
     path('about/', views.AboutView.as_view(), name='about'),
     path('post/', include('post.urls')),
-
-   
-    
-    # Option 2: Use function-based wrappers (for compatibility)
-    # path('', views.index, name='home'),
-    # path('about/', views.about, name='about'),
-    # path('health/', views.health_check, name='health_check'),
 ]
 
 # Serve static and media files during development

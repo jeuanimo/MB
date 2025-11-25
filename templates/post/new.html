@@ -10,7 +10,7 @@ Jeuan's Message Board{% endblock %} {% block content %}
           </h3>
         </div>
         <div class="card-body p-4">
-          <form method="post">
+          <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             
             {{ form.as_p }}
